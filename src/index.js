@@ -17,9 +17,17 @@ ipcMain.on("formAddSubmit",function (event, arg) {
   });
 });
 
-db.find({year: 1946}, function (err, docs) {
-	// console.log(docs);
+var data = 0;
+
+ipcMain.on('asynchronous-message', (event, arg) => {
+  db.find({}, function (err, docs) {
+    data = docs;
+    event.sender.send('asynchronous-reply', data );
+  });
+  
 });
+
+
 
 
 let mainWindow;

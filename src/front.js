@@ -9,3 +9,22 @@ formAddSubmit.addEventListener('click', function () {
     ipcRenderer.send("formAddSubmit", arg); 
 });
 
+window.onload = function() {
+    ipcRenderer.send('asynchronous-message', 'ping');
+    
+    var wrapp = document.createElement('div');
+    
+    ipcRenderer.on('asynchronous-reply', (event, arg) => {
+        wrapp.innerHTML = JSON.stringify(arg);
+        
+    });
+    
+    document.querySelector('body').appendChild(wrapp);
+};
+
+
+
+
+
+
+
