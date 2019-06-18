@@ -18,9 +18,16 @@ db.loadDatabase();
 
 ipcMain.on("formAddSubmit", function (event, arg) {
   db.insert({
-    name1: arg.name1,
-    name2: arg.name2,
-    name3: arg.name3,
+    position: arg.position,
+    rank: arg.rank,
+    surname: arg.surname,
+    name: arg.name,
+    middleName: arg.middleName,
+    dateOfBirth: arg.dateOfBirth,
+    phoneNumbers: arg.phoneNumbers,
+    milDocNum: arg.milDocNum,
+    tokenNumber: arg.tokenNumber,
+    location: arg.location,
     foto: arg.foto,
   });
 });
