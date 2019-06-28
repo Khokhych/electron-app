@@ -17,6 +17,17 @@ formAddSubmit.addEventListener('click', function () {
     ipcRenderer.send("formAddSubmit", arg);
 });
 
+const form_add_party_add_input = document.querySelector('.form_add_party_add_input');
+let cloneInputAddPatry = document.querySelector('.form_add_party input[name="name"]');
+let adenCloneInputAddPatry = 1;
+
+cloneInputAddParty.setAttribute("name", adenCloneInputAddPatry);
+
+form_add_party_add_input.addEventListener('click', function () {
+    cloneInputAddParty.insertBefore(form_add_party);
+    adenCloneInputAddPatry += 1;
+});
+
 window.onload = function () {
     ipcRenderer.send('asynchronous-message', 'ping');
     var wrapp = document.createElement('div');
@@ -34,7 +45,6 @@ window.onload = function () {
             <hr>
             `;
         }
-
     });
     document.querySelector('body').appendChild(wrapp);
 };
