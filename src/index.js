@@ -18,7 +18,6 @@ var usersDB = new Datastore({
 usersDB.loadDatabase();
 ipcMain.on("formAddSubmit", function (event, arg) {
   usersDB.insert({
-    // position: arg.position,
     rank: arg.rank,
     surname: arg.surname,
     name: arg.name,
@@ -27,7 +26,6 @@ ipcMain.on("formAddSubmit", function (event, arg) {
     phoneNumbers: arg.phoneNumbers,
     milDocNum: arg.milDocNum,
     tokenNumber: arg.tokenNumber,
-    // location: arg.location,
   });
 });
 

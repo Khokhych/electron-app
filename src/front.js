@@ -6,8 +6,7 @@ myConsole.log(1);
 const formAddSubmit = document.querySelector('#form_add_submit');
 formAddSubmit.addEventListener('click', function () {
     var arg = {};
-    // arg.position = document.querySelector('input[name="position"]').value;
-    // arg.rank = document.querySelector('input[name="rank"]').value;
+    arg.rank = document.querySelector('select[name="rank"]').value;
     arg.surname = document.querySelector('input[name="surname"]').value;
     arg.name = document.querySelector('input[name="name"]').value;
     arg.middleName = document.querySelector('input[name="middleName"]').value;
@@ -15,7 +14,6 @@ formAddSubmit.addEventListener('click', function () {
     arg.phoneNumbers = document.querySelector('input[name="phoneNumbers"]').value;
     arg.milDocNum = document.querySelector('input[name="milDocNum"]').value;
     arg.tokenNumber = document.querySelector('input[name="tokenNumber"]').value;
-    // arg.location = document.querySelector('input[name="location"]').value;
     ipcRenderer.send("formAddSubmit", arg);
 });
 
