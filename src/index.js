@@ -11,14 +11,14 @@ const {
 
 
 var Datastore = require('nedb');
-var db = new Datastore({
-  filename: 'users'
+var usersDB = new Datastore({
+  filename: 'DB_users'
 });
-db.loadDatabase();
 
+usersDB.loadDatabase();
 ipcMain.on("formAddSubmit", function (event, arg) {
-  db.insert({
-    position: arg.position,
+  usersDB.insert({
+    // position: arg.position,
     rank: arg.rank,
     surname: arg.surname,
     name: arg.name,
@@ -27,23 +27,19 @@ ipcMain.on("formAddSubmit", function (event, arg) {
     phoneNumbers: arg.phoneNumbers,
     milDocNum: arg.milDocNum,
     tokenNumber: arg.tokenNumber,
-    location: arg.location,
-    foto: arg.foto,
+    // location: arg.location,
   });
 });
 
 var data = 0;
 
 ipcMain.on('asynchronous-message', (event, arg) => {
-  db.find({}, function (err, docs) {
+  usersDB.find({}, function (err, docs) {
     data = docs;
     event.sender.send('asynchronous-reply', data);
   });
 
 });
-
-
-
 
 let mainWindow;
 
