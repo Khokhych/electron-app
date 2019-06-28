@@ -23,14 +23,14 @@ window.onload = function () {
     ipcRenderer.on('asynchronous-reply', (event, arg) => {
         for (let i = 0; i < arg.length; i++) {
             wrapp.innerHTML = wrapp.innerHTML + `
-            <div> ${arg[i].rank} </div>
-            <div> ${arg[i].surname} </div>
-            <div> ${arg[i].name} </div>
-            <div> ${arg[i].middleName} </div>
-            <div> ${arg[i].dateOfBirth} </div>
-            <div> ${arg[i].phoneNumbers} </div>
-            <div> ${arg[i].milDocNum} </div>
-            <div> ${arg[i].tokenNumber} </div>
+            <div> rank : ${arg[i].rank} </div>
+            <div> surname : ${arg[i].surname} </div>
+            <div> name : ${arg[i].name} </div>
+            <div> middleName : ${arg[i].middleName} </div>
+            <div> dateOfBirth : ${arg[i].dateOfBirth} </div>
+            <div> phoneNumbers : ${arg[i].phoneNumbers} </div>
+            <div> milDocNum : ${arg[i].milDocNum} </div>
+            <div> tokenNumber : ${arg[i].tokenNumber} </div>
             <hr>
             `;
         }

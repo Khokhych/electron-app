@@ -10,14 +10,19 @@ const {
 } = require('electron');
 
 
+// var DB_positions = new Datastore({
+//   filename: 'DB_positions'
+// });
+// DB_positions.loadDatabase();
+
 var Datastore = require('nedb');
-var usersDB = new Datastore({
+var DB_users = new Datastore({
   filename: 'DB_users'
 });
 
-usersDB.loadDatabase();
+DB_users.loadDatabase();
 ipcMain.on("formAddSubmit", function (event, arg) {
-  usersDB.insert({
+  DB_users.insert({
     rank: arg.rank,
     surname: arg.surname,
     name: arg.name,
@@ -29,10 +34,13 @@ ipcMain.on("formAddSubmit", function (event, arg) {
   });
 });
 
+
+
+
 var data = 0;
 
 ipcMain.on('asynchronous-message', (event, arg) => {
-  usersDB.find({}, function (err, docs) {
+  DB_users.find({}, function (err, docs) {
     data = docs;
     event.sender.send('asynchronous-reply', data);
   });
