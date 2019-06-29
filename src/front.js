@@ -17,14 +17,17 @@ formAddSubmit.addEventListener('click', function () {
     ipcRenderer.send("formAddSubmit", arg);
 });
 
-const form_add_party_add_input = document.querySelector('.form_add_party_add_input');
+let form_add_party_add_input = document.querySelector('.form_add_party_add_input');
 let cloneInputAddPatry = document.querySelector('.form_add_party input[name="name"]');
 let adenCloneInputAddPatry = 1;
 
-cloneInputAddParty.setAttribute("name", adenCloneInputAddPatry);
 
 form_add_party_add_input.addEventListener('click', function () {
-    cloneInputAddParty.insertBefore(form_add_party);
+    myConsole.log(this);
+    let clone = cloneInputAddPatry.cloneNode();
+    clone.setAttribute("name", `name_${adenCloneInputAddPatry}`);
+    clone.setAttribute("id", `name_${adenCloneInputAddPatry}`);
+    document.querySelector('.form_add_party').insertBefore(clone, form_add_party_add_input);
     adenCloneInputAddPatry += 1;
 });
 
