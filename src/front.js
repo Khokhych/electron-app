@@ -1,7 +1,7 @@
 const ipcRenderer = require('electron').ipcRenderer;
 var nodeConsole = require('console');
 var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
-myConsole.log(1);
+// myConsole.log(1);
 
 const formAddSubmit = document.querySelector('#form_add_submit');
 formAddSubmit.addEventListener('click', function () {
@@ -18,16 +18,19 @@ formAddSubmit.addEventListener('click', function () {
 });
 
 let form_add_party_add_input = document.querySelector('.form_add_party .add_input');
-var addNewInput = function () {
-    let a = `
-        <div style="background:red" class="section_wrap own_name">
-            <input class="form_add_party_input" type="text" name="name">
-            <span class="add_input childs"> + </span>
-            <div class="add_input next"> + </div>
-        </div>
+let addNewInput = function () {
+    let wrap = document.createElement("div");
+    wrap.classList.add("section_wrap")
+    let content = `
+        <input class="form_add_party_input" type="text" name="name">
+        <span class="add_input"> + </span>
     `;
-    if (this.classList.contains('childs')) {
-        this.parentElement.insertAdjacentHTML("beforeend", a);
+    wrap.innerHTML = content;
+    this.parentElement.append(wrap);
+    console.log(this);
+    let b = document.querySelectorAll('.form_add_party .add_input');
+    for (let i = 0; i < b.length; i++) {
+        b[i].addEventListener('click', addNewInput);
     }
 };
 form_add_party_add_input.addEventListener('click', addNewInput);
