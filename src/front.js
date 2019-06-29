@@ -17,19 +17,20 @@ formAddSubmit.addEventListener('click', function () {
     ipcRenderer.send("formAddSubmit", arg);
 });
 
-let form_add_party_add_input = document.querySelector('.form_add_party_add_input');
-let cloneInputAddPatry = document.querySelector('.form_add_party input[name="name"]');
-let adenCloneInputAddPatry = 1;
-
-
-form_add_party_add_input.addEventListener('click', function () {
-    myConsole.log(this);
-    let clone = cloneInputAddPatry.cloneNode();
-    clone.setAttribute("name", `name_${adenCloneInputAddPatry}`);
-    clone.setAttribute("id", `name_${adenCloneInputAddPatry}`);
-    document.querySelector('.form_add_party').insertBefore(clone, form_add_party_add_input);
-    adenCloneInputAddPatry += 1;
-});
+let form_add_party_add_input = document.querySelector('.form_add_party .add_input');
+var addNewInput = function () {
+    let a = `
+        <div style="background:red" class="section_wrap own_name">
+            <input class="form_add_party_input" type="text" name="name">
+            <span class="add_input childs"> + </span>
+            <div class="add_input next"> + </div>
+        </div>
+    `;
+    if (this.classList.contains('childs')) {
+        this.parentElement.insertAdjacentHTML("beforeend", a);
+    }
+};
+form_add_party_add_input.addEventListener('click', addNewInput);
 
 window.onload = function () {
     ipcRenderer.send('asynchronous-message', 'ping');
