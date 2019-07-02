@@ -15,6 +15,8 @@ const {
 // });
 // DB_positions.loadDatabase();
 
+
+
 var Datastore = require('nedb');
 var DB_users = new Datastore({
   filename: 'DB_users'
@@ -87,4 +89,13 @@ app.on('ready', function () {
   });
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
 
+});
+
+
+DB_users.findOne({
+  _id: 'z4ClzRNQblWb0NoI'
+}, function (err, doc) {
+  if (!err) {
+    console.log(doc);
+  }
 });
