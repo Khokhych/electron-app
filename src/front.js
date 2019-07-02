@@ -16,6 +16,27 @@ formAddSubmit.addEventListener('click', function () {
     arg.tokenNumber = document.querySelector('.form_add_user input[name="tokenNumber"]').value;
     ipcRenderer.send("formAddSubmit", arg);
 });
+try {
+    const form_add_party_submit = document.querySelector('#form_add_party_submit');
+    form_add_party_submit.addEventListener('click', function () {
+        var arg = {};
+        let values = [];
+        const form_add_party_submit = document.querySelectorAll('.form_add_party .form_add_party_input');
+        for (let i = 0; i < form_add_party_submit.length; i++) {
+            values.push({
+                    name: form_add_party_submit[i].value,
+                }
+
+            );
+        }
+        arg.values = values;
+        console.log(arg);
+        ipcRenderer.send("form_add_party_submit", arg);
+    });
+} catch (e) {
+    console.log(e);
+};
+
 
 (function () { // add new level and culculate
     let form_add_party_add_input = document.querySelector('.form_add_party .add_input');
@@ -32,9 +53,9 @@ formAddSubmit.addEventListener('click', function () {
         let wrap = document.createElement("div");
         wrap.classList.add("section_wrap")
         let content = `
-        <input class="form_add_party_input" type="text" level="${newLevel}_" name="name">
-        <span class="add_input"> + </span>
-    `;
+            <input class="form_add_party_input" type="text" level="${newLevel}_" name="name">
+            <span class="add_input"> + </span>
+        `;
         wrap.innerHTML = content;
         _this.parentElement.append(wrap);
         let b = document.querySelectorAll('.form_add_party .add_input');
@@ -43,8 +64,7 @@ formAddSubmit.addEventListener('click', function () {
         }
     };
     form_add_party_add_input.addEventListener('click', addNewInput);
-
-}())
+}());
 
 window.onload = function () {
     ipcRenderer.send('asynchronous-message', 'ping');
@@ -52,14 +72,14 @@ window.onload = function () {
     ipcRenderer.on('asynchronous-reply', (event, arg) => {
         for (let i = 0; i < arg.length; i++) {
             wrapp.innerHTML = wrapp.innerHTML + `
-            <div> rank : ${arg[i].rank} </div>
-            <div> surname : ${arg[i].surname} </div>
-            <div> name : ${arg[i].name} </div>
-            <div> middleName : ${arg[i].middleName} </div>
-            <div> dateOfBirth : ${arg[i].dateOfBirth} </div>
-            <div> phoneNumbers : ${arg[i].phoneNumbers} </div>
-            <div> milDocNum : ${arg[i].milDocNum} </div>
-            <div> tokenNumber : ${arg[i].tokenNumber} </div>
+            <div> <span> rank </span> : <span class="_write" name="rank" id="${arg[i]._id}">${arg[i].rank} </span></div>
+            <div> <span> surname </span> : <span class="_write" name="surname" id="${arg[i]._id}">${arg[i].surname} </span></div>
+            <div> <span> name </span> : <span class="_write" name="name" id="${arg[i]._id}">${arg[i].name} </span></div>
+            <div> <span> middleName </span> : <span class="_write" name="middleName" id="${arg[i]._id}">${arg[i].middleName} </span></div>
+            <div> <span> dateOfBirth </span> : <span class="_write" name="dateOfBirth" id="${arg[i]._id}">${arg[i].dateOfBirth} </span></div>
+            <div> <span> phoneNumbers </span> : <span class="_write" name="phoneNumbers" id="${arg[i]._id}">${arg[i].phoneNumbers} </span></div>
+            <div> <span> milDocNum </span> : <span class="_write" name="milDocNum" id="${arg[i]._id}">${arg[i].milDocNum} </span></div>
+            <div> <span> tokenNumber </span> : <span class="_write" name="tokenNumber" id="${arg[i]._id}">${arg[i].tokenNumber} </span></div>
             <hr>
             `;
         }

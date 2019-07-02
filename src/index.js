@@ -34,6 +34,11 @@ ipcMain.on("formAddSubmit", function (event, arg) {
   });
 });
 
+ipcMain.on("form_add_party_submit", function (event, arg) {
+  DB_users.insert({
+    unit: arg.values,
+  });
+});
 
 
 
