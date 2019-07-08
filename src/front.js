@@ -25,6 +25,7 @@ try {
         for (let i = 0; i < form_add_party_submit.length; i++) {
             values.push({
                     name: form_add_party_submit[i].value,
+                    level: form_add_party_submit[i].getAttribute('level'),
                 }
 
             );
