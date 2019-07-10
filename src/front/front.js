@@ -1,18 +1,3 @@
-(function () {
-    const formAddSubmit = document.querySelector('#form_add_submit');
-    formAddSubmit.addEventListener('click', function () {
-        var arg = {};
-        arg.rank = document.querySelector('.form_add_user select[name="rank"]').value;
-        arg.surname = document.querySelector('.form_add_user input[name="surname"]').value;
-        arg.name = document.querySelector('.form_add_user input[name="name"]').value;
-        arg.middleName = document.querySelector('.form_add_user input[name="middleName"]').value;
-        arg.dateOfBirth = document.querySelector('.form_add_user input[name="dateOfBirth"]').value;
-        arg.phoneNumbers = document.querySelector('.form_add_user input[name="phoneNumbers"]').value;
-        arg.milDocNum = document.querySelector('.form_add_user input[name="milDocNum"]').value;
-        arg.tokenNumber = document.querySelector('.form_add_user input[name="tokenNumber"]').value;
-        ipcRenderer.send("formAddSubmit", arg);
-    });
-}())
 const ipcRenderer = require('electron').ipcRenderer;
 var nodeConsole = require('console');
 var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
@@ -70,25 +55,4 @@ window.onload = function () {
         }
     });
     document.querySelector('body').appendChild(wrapp);
-};
-try {
-    const form_add_party_submit = document.querySelector('#form_add_party_submit');
-    form_add_party_submit.addEventListener('click', function () {
-        var arg = {};
-        let values = [];
-        const form_add_party_submit = document.querySelectorAll('.form_add_party .form_add_party_input');
-        for (let i = 0; i < form_add_party_submit.length; i++) {
-            values.push({
-                    name: form_add_party_submit[i].value,
-                    level: form_add_party_submit[i].getAttribute('level'),
-                }
-
-            );
-        }
-        arg.values = values;
-        console.log(arg);
-        ipcRenderer.send("form_add_party_submit", arg);
-    });
-} catch (e) {
-    console.log(e);
 };
