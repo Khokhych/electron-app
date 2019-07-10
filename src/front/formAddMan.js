@@ -1,3 +1,4 @@
+;
 (function () {
 	const formAddSubmit = document.querySelector('#form_add_submit');
 	formAddSubmit.addEventListener('click', function () {
@@ -12,4 +13,4 @@
 		arg.tokenNumber = document.querySelector('.form_add_user input[name="tokenNumber"]').value;
 		ipcRenderer.send("formAddSubmit", arg);
 	});
-}())
+}());
