@@ -1,5 +1,5 @@
 ;
-(function () {
+(function () { // render database
 	window.onload = function () {
 		ipcRenderer.send('asynchronous-message', 'ping');
 		var wrapp = document.createElement('div');
@@ -21,3 +21,20 @@
 		document.querySelector('body').appendChild(wrapp);
 	};
 }());
+
+;
+(function () {
+	let option = document.querySelector('#position');
+	option.addEventListener('click', function () {
+		console.log('click');
+		ipcRenderer.send('clickOptionPosition', '1');
+	})
+}());
+
+let aa;;
+(function () {
+	ipcRenderer.on('clickOptionPosition', (event, arg) => {
+		aa = arg;
+	});
+}());
+console.log(aa);

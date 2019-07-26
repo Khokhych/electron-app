@@ -8,6 +8,8 @@ require('./personal.js');
 const {
   ipcMain
 } = require('electron');
+var Datastore = require('nedb');
+
 
 
 // var DB_positions = new Datastore({
@@ -17,7 +19,6 @@ const {
 
 
 
-var Datastore = require('nedb');
 var DB_users = new Datastore({
   filename: 'DB_users'
 });
@@ -38,21 +39,40 @@ ipcMain.on("formAddSubmit", function (event, arg) {
 
 ipcMain.on("form_add_party_submit", function (event, arg) {
   DB_users.insert({
+    position: "1",
     unit: arg.values,
   });
 });
 
 
 
-var data = 0;
 
-ipcMain.on('asynchronous-message', (event, arg) => {
-  DB_users.find({}, function (err, docs) {
-    data = docs;
-    event.sender.send('asynchronous-reply', data);
+
+;
+(function () {
+  var data = 0;
+  ipcMain.on('asynchronous-message', (event, arg) => {
+    DB_users.find({}, function (err, docs) {
+      data = docs;
+      event.sender.send('asynchronous-reply', data);
+    });
   });
+}());
 
-});
+;
+(function () {
+  var data = 0;
+  ipcMain.on('clickOptionPosition', (event, arg) => {
+    DB_users.find({
+      "position": "1"
+    }, function (err, docs) {
+      data = docs;
+      event.sender.send('clickOptionPosition', data);
+      console.log(err);
+    });
+  });
+}());
+
 
 let mainWindow;
 
