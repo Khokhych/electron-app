@@ -67,8 +67,9 @@ ipcMain.on("form_add_party_submit", function (event, arg) {
       "position": "1"
     }, function (err, docs) {
       data = docs;
-      event.sender.send('clickOptionPosition', data);
-      console.log(err);
+      console.log(data);
+      event.sender.send('clickOptionPosition2', data);
+
     });
   });
 }());

@@ -101,10 +101,31 @@ const path = require('path');
 	})
 }());
 
-let aa;;
 (function () {
-	ipcRenderer.on('clickOptionPosition', (event, arg) => {
-		aa = arg;
+	ipcRenderer.on('clickOptionPosition2', (event, arg) => {
+		console.log("arg", arg);
+
+
+		let wrap = document.createElement("div")
+		for (let i = 0; i < arg.length; i++) {
+
+			let unitWrap = document.createElement("div")
+			unitWrap.setAttribute("_id", `${arg[i]._id}`);
+
+			let units = arg[i].unit;
+
+			for (let i = 0; i < units.length; i++) {
+
+				let unit = document.createElement("div");
+				unit.setAttribute("level", units[i].level);
+				unit.innerHTML = units[i].name;
+
+				unitWrap.appendChild(unit);
+			}
+			wrap.appendChild(unitWrap);
+		};
+		console.log("wrap", wrap);
+
+		document.querySelector('.form_add_user').append(wrap);
 	});
 }());
-console.log(aa);
