@@ -35,12 +35,11 @@
 	ipcRenderer.on('clickOptionPosition2', (event, arg) => {
 		console.log("arg", arg);
 
-
 		let wrap = document.createElement("div")
 		for (let i = 0; i < arg.length; i++) {
 
-			let unitWrap = document.createElement("div")
-			unitWrap.setAttribute("_id", `${arg[i]._id}`);
+			let unitsWrap = document.createElement("div")
+			unitsWrap.setAttribute("_id", `${arg[i]._id}`);
 
 			let units = arg[i].unit;
 
@@ -50,12 +49,11 @@
 				unit.setAttribute("level", units[i].level);
 				unit.innerHTML = units[i].name;
 
-				unitWrap.appendChild(unit);
-			}
-			wrap.appendChild(unitWrap);
+				unitsWrap.appendChild(unit);
+			};
+			console.log("wrap", wrap);
+			wrap.appendChild(unitsWrap);
+			document.querySelector('.form_add_user').append(wrap);
 		};
-		console.log("wrap", wrap);
-
-		document.querySelector('.form_add_user').append(wrap);
 	});
 }());
